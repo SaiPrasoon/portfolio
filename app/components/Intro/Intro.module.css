@@ -1,0 +1,20 @@
+.introContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.myImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
