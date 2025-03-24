@@ -10,19 +10,4 @@ const fetchProfileData = async () => {
   return rows[0];
 };
 
-const fetchRecentExperiences = async () => {
-  "use server";
-
-  try {
-    const recentExperiences = await sql(
-      "SELECT * FROM experience ORDER BY startDate DESC LIMIT 3;"
-    );
-
-    return recentExperiences;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch revenue data.");
-  }
-};
-
-export { fetchProfileData, fetchRecentExperiences };
+export { fetchProfileData };
