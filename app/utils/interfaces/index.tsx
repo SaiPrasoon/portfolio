@@ -11,6 +11,7 @@ export interface iProfileData {
     awards?: iAward[];
     contact: iContact;
     aboutMe: string;    
+    aboutme?: string;
 }
 
 export interface iExperience {

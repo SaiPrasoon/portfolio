@@ -6,7 +6,7 @@ import { ROUTE_LINKS } from "@/app/utils/constants";
 const Navbar = () => {
   return (
     <nav className="p-2 border-b-1">
-      <div className="flex flex-row gap-2 justify-between">
+      <div className="flex flex-row gap-2 justify-between items-center">
         <div className="flex flex-row gap-2 items-center justify-between lg:justify-start">
           <MenuButton />
           <Link href="/" className={styles.logo}>

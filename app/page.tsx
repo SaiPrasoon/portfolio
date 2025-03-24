@@ -1,11 +1,12 @@
-import { Card, CardContent } from "@/components/ui/card";
 import Intro from "./components/Intro/Intro";
 import RecentExperience from "./components/RecentExperience";
 import SectionHeader from "./components/SectionHeader/SectionHeader";
-import { Experience, Skills } from "./utils/constants";
+import { fetchRecentExperiences } from "./lib/data";
 
-export default function Home() {
-  const recentExperienceList = Experience.slice(0, 3);
+export default async function Home() {
+  const recentExperienceList = await fetchRecentExperiences();
+
+  console.log({ recentExperienceList });
 
   return (
     <div className="flex flex-col gap-2">
@@ -26,13 +27,13 @@ export default function Home() {
       </div>
 
       <div className="flex flex-row gap-3 w-100">
-        {Skills.map((skill) => (
+        {/* {Skills.map((skill) => (
           <Card key={skill.name}>
             <CardContent className="justify-center items-center">
               <div className="text-sm">{skill.name}</div>
             </CardContent>
           </Card>
-        ))}
+        ))} */}
       </div>
     </div>
   );
