@@ -132,3 +132,8 @@ button {
   width: 100%;
   max-width: 800px;
 }
+
+.separator {
+  width: 100%;
+  border: 1px solid var(--border);
+}

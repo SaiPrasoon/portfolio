@@ -32,15 +32,17 @@ export interface iProject {
 
 export interface iSkill {
     name: string;
-    logo?: string;
+    logo: string;
+    id: number;
+    type: string;
 }
 
 export interface iAward {
     id: number;
-    title: string;
-    companyName: string;
-    image?: string;
-    description?: string;
+    name: string;
+    docUrl: string;
+    description: string;
+    year: number;
 }
 
 export interface iContact {
@@ -49,4 +51,13 @@ export interface iContact {
     githubUrl: string;
     linkedInUrl: string;
     twitterUrl: string;
+}
+
+export interface iEducation {
+    id: number;
+    degree: string;
+    institution: string;
+    startDate: Date;
+    endDate: Date;
+    grade: string;
 }

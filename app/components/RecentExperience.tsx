@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getExperienceDuration } from "../services/commonService";
 import { iExperience } from "../utils/interfaces";
 
 interface RecentExperienceProps {
@@ -12,48 +13,29 @@ interface RecentExperienceProps {
 }
 
 const RecentExperience = ({ experience }: RecentExperienceProps) => {
-  const getExperienceDuration = () => {
-    let duration: string = new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      year: "numeric",
-    })
-      .format(experience.startDate)
-      .toString();
-
-    if (experience.isCurrent) {
-      duration += " - Present";
-    } else {
-      const formattedEndDate = new Intl.DateTimeFormat("en-US", {
-        month: "long",
-        year: "numeric",
-      })
-        .format(experience.endDate)
-        .toString();
-      duration = duration + " - " + formattedEndDate;
-    }
-
-    return duration;
-  };
-
   return (
-    <Card className="w-100">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{experience.companyName}</CardTitle>
         <CardDescription className="italic">
-          {getExperienceDuration()}
+          {getExperienceDuration(
+            experience.isCurrent,
+            experience.startDate,
+            experience.endDate
+          )}
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
-        <div className="text-base font-bold">Projects Worked:</div>
-        <div>
+        <div className="text-base font-bold underline">Projects Worked:</div>
+        <ul className="list-disc ml-5">
           {experience.projects.map((projectData) => {
             return (
-              <div key={projectData.id} className="text-sm">
+              <li key={projectData.id} className="text-sm">
                 {projectData.projectName}
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </CardContent>
     </Card>
   );

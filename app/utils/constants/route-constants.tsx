@@ -2,8 +2,8 @@ import { iRouteLink } from "../interfaces";
 
 const ROUTE_LINKS: iRouteLink[] = [
   {
-    label: "About Me",
-    link: "/aboutMe",
+    label: "Home",
+    link: "/",
   },
   {
     label: "Experience",

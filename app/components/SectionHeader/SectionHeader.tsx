@@ -3,20 +3,27 @@ import Link from "next/link";
 
 interface SectionHeaderProps {
   title: string;
-  viewMoreLink: string;
+  viewMoreLink?: string;
+  hideLink?: boolean;
 }
 
-const SectionHeader = ({ title, viewMoreLink }: SectionHeaderProps) => {
+const SectionHeader = ({
+  title,
+  viewMoreLink,
+  hideLink,
+}: SectionHeaderProps) => {
   return (
     <div className="flex flex-row gap-4 items-center">
       <span className="font-bold">{title}</span>
-      <Link
-        href={viewMoreLink}
-        className="text-indigo-500 flex flex-row gap-1 items-center justify-center text-sm hover:font-bold"
-      >
-        <span>View More</span>
-        <ChevronRight size={16} />
-      </Link>
+      {!hideLink ? (
+        <Link
+          href={viewMoreLink || ""}
+          className="text-indigo-500 flex flex-row gap-1 items-center justify-center text-sm hover:font-bold  dark:text-teal-500"
+        >
+          <span>View More</span>
+          <ChevronRight size={16} />
+        </Link>
+      ) : null}
     </div>
   );
 };
