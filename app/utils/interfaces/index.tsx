@@ -6,12 +6,7 @@ export interface iRouteLink {
 export interface iProfileData {
     fullName: string;
     dateOfBirth: Date;
-    jobHistory: iExperience[];
-    skills: iSkill[];
-    awards?: iAward[];
-    contact: iContact;
     aboutMe: string;    
-    aboutme?: string;
 }
 
 export interface iExperience {
@@ -32,7 +27,7 @@ export interface iProject {
     startDate: Date;
     endDate?: Date;
     responsibilities: string[];
-    techStack: iSkill[];
+    techStack?: iSkill[];
 }
 
 export interface iSkill {

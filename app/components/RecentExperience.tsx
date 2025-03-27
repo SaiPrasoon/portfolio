@@ -5,10 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { iExperience } from "../utils/interfaces";
 
 interface RecentExperienceProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  experience: Record<string, any>;
+  experience: iExperience;
 }
 
 const RecentExperience = ({ experience }: RecentExperienceProps) => {
@@ -35,7 +35,6 @@ const RecentExperience = ({ experience }: RecentExperienceProps) => {
     return duration;
   };
 
-
   return (
     <Card className="w-100">
       <CardHeader>
@@ -47,16 +46,13 @@ const RecentExperience = ({ experience }: RecentExperienceProps) => {
       <CardContent className="flex flex-col gap-2">
         <div className="text-base font-bold">Projects Worked:</div>
         <div>
-        {/* {
-            experience.projects.map((projectData)=>{
-              return (
-                <div key={projectData.id} className="text-sm">
-                  {projectData.projectName}
-
-                </div>
-              )
-            })
-          } */}
+          {experience.projects.map((projectData) => {
+            return (
+              <div key={projectData.id} className="text-sm">
+                {projectData.projectName}
+              </div>
+            );
+          })}
         </div>
       </CardContent>
     </Card>

@@ -23,10 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${oxygen.className} antialiased`}>
-        <div className="p-4 flex flex-col gap-3">
-          <Navbar />
-          {children}
-          <Footer />
+        <div className="p-4 flex flex-col items-center justify-center gap-3">
+          <div className="main-container">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
         </div>
       </body>
     </html>
