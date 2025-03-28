@@ -1,6 +1,6 @@
-import Link from "next/link";
 import MenuButton from "./MenuButton";
 import ToggleTheme from "./ToggleTheme";
+import TransitionLink from "./TransitionLink";
 
 const Navbar = () => {
   return (
@@ -8,9 +8,12 @@ const Navbar = () => {
       <div className="flex flex-row gap-2 justify-between items-center">
         <div className="flex flex-row gap-2 items-center justify-between lg:justify-start">
           <MenuButton />
-          <Link href="/" className={`text-base font-bold  lg:text-[1.5rem]`}>
+          <TransitionLink
+            href="/"
+            className={`text-base font-bold  lg:text-[1.5rem]`}
+          >
             Mani Sai Prasoon Bandi
-          </Link>
+          </TransitionLink>
         </div>
 
         <ToggleTheme />

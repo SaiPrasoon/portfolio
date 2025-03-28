@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { Toaster } from "sonner";
+import { ViewTransitions } from 'next-view-transitions'
 
 const oxygen = Oxygen({
   subsets: ["latin"],
@@ -24,24 +25,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${oxygen.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster position="top-right" />
-          <div className="p-4 flex flex-col items-center justify-center gap-3">
-            <div className="main-container">
-              <Navbar />
-              {children}
-              {/* <Footer /> */}
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${oxygen.className} antialiased`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster position="top-right" />
+            <div className="p-4 flex flex-col items-center justify-center gap-3">
+              <div className="main-container">
+                <Navbar />
+                {children}
+                {/* <Footer /> */}
+              </div>
             </div>
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }
