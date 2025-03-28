@@ -153,12 +153,23 @@ const fetchAwards = async () => {
   return formattedRows;
 };
 
+const fetchRecentAwards = async () => {
+  "use server";
+
+  const rows = await sql("select * from awards ORDER BY id DESC LIMIT 3;");
+
+  const formattedRows = rows.map((rowData) => formatAwardResponse(rowData));
+
+  return formattedRows;
+};
+
 export {
   fetchAwards,
   fetchContactInfo,
   fetchEducation,
   fetchExperiences,
   fetchProfileData,
+  fetchRecentAwards,
   fetchRecentExperiences,
   fetchSkills,
   fetchTechSkills,

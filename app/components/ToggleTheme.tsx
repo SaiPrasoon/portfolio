@@ -23,26 +23,26 @@ const ToggleTheme = () => {
 
   return (
     <>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <Button onClick={toggleTheme} variant={"ghost"}>
+      <Button onClick={toggleTheme} variant={"ghost"}>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
               {isLightTheme() ? (
                 <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
               ) : (
                 <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
               )}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            {isLightTheme() ? (
-              <p>Toggle to Dark Theme</p>
-            ) : (
-              <p>Toggle to Light Theme</p>
-            )}
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent>
+              {isLightTheme() ? (
+                <p>Toggle to Dark Theme</p>
+              ) : (
+                <p>Toggle to Light Theme</p>
+              )}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </Button>
     </>
   );
 };

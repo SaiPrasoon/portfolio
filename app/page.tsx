@@ -1,3 +1,4 @@
+import AwardCard from "./awards/AwardCard";
 import EducationCard from "./components/EducationCard";
 import Intro from "./components/Intro/Intro";
 import RecentExperience from "./components/RecentExperience";
@@ -6,6 +7,7 @@ import Separator from "./components/Separator";
 import SkillCard from "./components/SkillCard";
 import {
   fetchEducation,
+  fetchRecentAwards,
   fetchRecentExperiences,
   fetchTechSkills,
 } from "./lib/data";
@@ -17,6 +19,8 @@ export default async function Home() {
   const techSkills = await fetchTechSkills();
 
   const educationList = await fetchEducation();
+
+  const recentAwards = await fetchRecentAwards();
 
   return (
     <div className="flex flex-col gap-2">
@@ -33,6 +37,16 @@ export default async function Home() {
       <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {recentExperiences.map((experience) => (
           <RecentExperience key={experience.id} experience={experience} />
+        ))}
+      </div>
+
+      <Separator />
+
+      <SectionHeader title="My Accomplishments" viewMoreLink="/awards" />
+
+      <div className="flex flex-row gap-3">
+        {recentAwards.map((award) => (
+          <AwardCard key={award.id} award={award} hidePreview={true} />
         ))}
       </div>
 

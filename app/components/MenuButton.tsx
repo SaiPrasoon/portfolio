@@ -1,3 +1,5 @@
+"use client";
+
 import { ROUTE_LINKS } from "@/app/utils/constants";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,9 +12,11 @@ import {
 } from "@/components/ui/sheet";
 import { CircleUser, Menu } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { usePathname } from "next/navigation";
 
 const MenuButton = () => {
+  const pathname = usePathname();
+  
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -27,16 +31,21 @@ const MenuButton = () => {
             <span>Mani Sai Prasoon</span>
           </SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2">ß
           {ROUTE_LINKS.map((routeLink) => {
             return (
               <SheetClose asChild key={routeLink.link}>
                 <Link
                   href={routeLink.link}
-                  className="text-sm font-light 
+                  className={`text-sm font-light 
                     hover:font-medium
                   hover:text-indigo-800
-                  "
+                  ${
+                    pathname === routeLink.link
+                      ? "font-bold text-indigo-800"
+                      : ""
+                  }
+                  `}
                 >
                   {routeLink.label}
                 </Link>
