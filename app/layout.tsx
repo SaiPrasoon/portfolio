@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Oxygen } from "next/font/google";
 // import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import "./globals.css";
-import { ThemeProvider } from "./components/ThemeProvider";
 import { Toaster } from "sonner";
-import { ViewTransitions } from 'next-view-transitions'
+import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./components/ThemeProvider";
+import "./globals.css";
 
 const oxygen = Oxygen({
   subsets: ["latin"],
@@ -25,7 +24,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body className={`${oxygen.className} antialiased`}>
           <ThemeProvider
@@ -45,6 +43,5 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </ViewTransitions>
   );
 }
