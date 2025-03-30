@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MenuButton from "./MenuButton";
 import ToggleTheme from "./ToggleTheme";
+import { Phone } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -8,15 +9,18 @@ const Navbar = () => {
       <div className="flex flex-row gap-2 justify-between items-center">
         <div className="flex flex-row gap-2 items-center justify-between lg:justify-start">
           <MenuButton />
-          <Link
-            href="/"
-            className={`text-base font-bold  lg:text-[1.5rem]`}
-          >
+          <Link href="/" className={`text-base font-bold  lg:text-[1.5rem]`}>
             Mani Sai Prasoon Bandi
           </Link>
         </div>
 
-        <ToggleTheme />
+        <div className="flex flex-row gap-2 items-center">
+          <Link href="/contact">
+            <Phone size={'18px'} />
+          </Link>
+
+          <ToggleTheme />
+        </div>
       </div>
     </nav>
   );
