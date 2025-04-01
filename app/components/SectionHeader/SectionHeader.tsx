@@ -18,9 +18,9 @@ const SectionHeader = ({
       {!hideLink ? (
         <Link
           href={viewMoreLink || ""}
-          className="text-indigo-500 flex flex-row gap-1 items-center justify-center text-sm hover:font-bold  dark:text-teal-500"
+          className="text-indigo-500 flex flex-row gap-1 items-center justify-center text-sm cursor-pointer hover:font-bold  dark:text-teal-500"
         >
-          <span>View More</span>
+          <span className="cursor-pointer">View More</span>
           <ChevronRight size={16} />
         </Link>
       ) : null}

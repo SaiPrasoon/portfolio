@@ -2,6 +2,7 @@ import Link from "next/link";
 import MenuButton from "./MenuButton";
 import ToggleTheme from "./ToggleTheme";
 import { Phone } from "lucide-react";
+import ResumeButton from "./ResumeButton";
 
 const Navbar = () => {
   return (
@@ -15,8 +16,10 @@ const Navbar = () => {
         </div>
 
         <div className="flex flex-row gap-2 items-center">
+          <ResumeButton hideText={true} />
+
           <Link href="/contact">
-            <Phone size={'18px'} />
+            <Phone size={"18px"} />
           </Link>
 
           <ToggleTheme />

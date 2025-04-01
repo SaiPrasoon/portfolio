@@ -44,7 +44,7 @@ export default async function Home() {
 
       <SectionHeader title="My Accomplishments" viewMoreLink="/awards" />
 
-      <div className="flex flex-row gap-3">
+      <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {recentAwards.map((award) => (
           <AwardCard key={award.id} award={award} hidePreview={true} />
         ))}
