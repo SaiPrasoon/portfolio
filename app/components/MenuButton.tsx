@@ -31,7 +31,7 @@ const MenuButton = () => {
             <span>Mani Sai Prasoon</span>
           </SheetTitle>
         </SheetHeader>
-        <div className="flex flex-col gap-2">ß
+        <div className="flex flex-col gap-2">
           {ROUTE_LINKS.map((routeLink) => {
             return (
               <SheetClose asChild key={routeLink.link}>
