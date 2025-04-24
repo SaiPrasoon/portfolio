@@ -22,13 +22,13 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           <span className="text-base font-medium">
             {projectData.projectName}
           </span>
-          <span className="italic text-sm">
+          {/* <span className="italic text-sm">
             {getExperienceDuration(
               projectData.isCurrent,
               projectData.startDate,
               projectData.endDate
             )}
-          </span>
+          </span> */}
         </div>
         <ul className="list-disc ml-5">
           {projectData.responsibilities.map((responsibility, index) => (
