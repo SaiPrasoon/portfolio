@@ -16,9 +16,6 @@ export const metadata: Metadata = {
   title: "Prasoon - Portfolio",
   description:
     "Explore the portfolio of Mani Sai Prasoon Bandi, a passionate software engineer with expertise in building scalable and user-friendly web applications using modern technologies like Angular, ReactJS, and AI-driven platforms.",
-  icons: {
-    icon: "/Dev.png",
-  },
 };
 
 export default function RootLayout({
@@ -28,6 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/initials.svg" type="image/svg+xml" />
+      </head>
+
       <body className={`${oxygen.className} antialiased`}>
         <ThemeProvider
           attribute="class"
