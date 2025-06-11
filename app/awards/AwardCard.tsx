@@ -45,7 +45,7 @@ const AwardCard = ({ award, hidePreview }: AwardCardProps) => {
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 {isLoading && (
-                  <div className="flex w-inherit h-[500px] bg-gray-200 dark:bg-gray-800 animate-pulse rounded" />
+                  <div className="flex w-inherit h-[20vh] bg-gray-200 dark:bg-gray-800 animate-pulse rounded" />
                 )}
                 <Image
                   src={award.docUrl}
