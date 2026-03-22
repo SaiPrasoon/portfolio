@@ -6,7 +6,8 @@ export interface iRouteLink {
 export interface iProfileData {
     fullName: string;
     dateOfBirth: Date;
-    aboutMe: string;    
+    aboutMe: string;
+    resumeUrl: string;
 }
 
 export interface iExperience {

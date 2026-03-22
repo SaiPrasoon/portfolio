@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import React from "react";
+import { GraduationCap } from "lucide-react";
 import { iEducation } from "../utils/interfaces";
 
 interface EducationCardProps {
@@ -32,24 +32,28 @@ const EducationCard = ({ education }: EducationCardProps) => {
   };
 
   return (
-    <>
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>{education.degree}</CardTitle>
-          <CardDescription className="italic">
-            {getEducationDuration()}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-2 justify-center">
-          <div className="text-sm">
-            I have pursued my <strong>{education.degree}</strong> degree
-            from&nbsp;
-            <strong>{education.institution}</strong> in{" "}
-            <strong>Computer Science and Engineering</strong>.
+    <Card className="w-full group hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+      <CardHeader className="pb-3">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+            <GraduationCap size={20} />
           </div>
-        </CardContent>
-      </Card>
-    </>
+          <div>
+            <CardTitle className="text-base">{education.degree}</CardTitle>
+            <CardDescription className="text-xs mt-0.5">
+              {getEducationDuration()}
+            </CardDescription>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          Pursued <strong className="text-foreground">{education.degree}</strong> from{" "}
+          <strong className="text-foreground">{education.institution}</strong> in{" "}
+          <strong className="text-foreground">Computer Science and Engineering</strong>.
+        </p>
+      </CardContent>
+    </Card>
   );
 };
 

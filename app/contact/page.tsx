@@ -1,4 +1,5 @@
-import { GitGraph, LinkedinIcon, Mail, Phone, TwitterIcon } from "lucide-react";
+import { Github, LinkedinIcon, Mail, Phone, TwitterIcon } from "lucide-react";
+import { FadeInUp, StaggerContainer, StaggerItem } from "../components/MotionWrapper";
 import { fetchContactInfo } from "../lib/data";
 import ContactInfoSection from "./ContactInfoSection";
 import { ContactActionType } from "../utils/constants";
@@ -7,47 +8,64 @@ const Contact = async () => {
   const contactInfo = await fetchContactInfo();
 
   return (
-    <div className="flex flex-col gap-4 p-2">
-      <div className="text-base font-medium">
-        Let’s connect! Whether you have a question, a collaboration idea, or
-        just want to say hello, I’d love to hear from you. Feel free to reach
-        out through any of the channels below, and I’ll get back to you as soon
-        as possible. Looking forward to connecting!
-      </div>
+    <div className="flex flex-col gap-6 py-2">
+      <FadeInUp>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+          Get in Touch
+        </h1>
+        <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-2xl">
+          {`Whether you have a question, a collaboration idea, or just want to say hello — I'd love to hear from you. Reach out through any of the channels below.`}
+        </p>
+      </FadeInUp>
 
-      <div className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-        <ContactInfoSection
-          icon={<Phone />}
-          label={contactInfo.mobileNumber}
-          actionType={ContactActionType.COPY}
-        />
-
-        <ContactInfoSection
-          icon={<Mail />}
-          label={contactInfo.emailId}
-          actionType={ContactActionType.COPY}
-        />
-
-        <ContactInfoSection
-          icon={<LinkedinIcon />}
-          label={contactInfo.linkedInUrl}
-          actionType={ContactActionType.NAVIGATE}
-        />
-
-        <ContactInfoSection
-          icon={<GitGraph />}
-          label={contactInfo.githubUrl}
-          actionType={ContactActionType.NAVIGATE}
-        />
-
-        {contactInfo.twitterUrl ? (
+      <StaggerContainer className="grid xs:grid-cols-1 md:grid-cols-2 gap-4">
+        <StaggerItem>
           <ContactInfoSection
-            icon={<TwitterIcon />}
-            label={contactInfo.twitterUrl}
+            icon={<Phone size={20} />}
+            label={contactInfo.mobileNumber}
+            displayLabel="Phone"
+            actionType={ContactActionType.COPY}
+          />
+        </StaggerItem>
+
+        <StaggerItem>
+          <ContactInfoSection
+            icon={<Mail size={20} />}
+            label={contactInfo.emailId}
+            displayLabel="Email"
+            actionType={ContactActionType.COPY}
+          />
+        </StaggerItem>
+
+        <StaggerItem>
+          <ContactInfoSection
+            icon={<LinkedinIcon size={20} />}
+            label={contactInfo.linkedInUrl}
+            displayLabel="LinkedIn"
             actionType={ContactActionType.NAVIGATE}
           />
+        </StaggerItem>
+
+        <StaggerItem>
+          <ContactInfoSection
+            icon={<Github size={20} />}
+            label={contactInfo.githubUrl}
+            displayLabel="GitHub"
+            actionType={ContactActionType.NAVIGATE}
+          />
+        </StaggerItem>
+
+        {contactInfo.twitterUrl ? (
+          <StaggerItem>
+            <ContactInfoSection
+              icon={<TwitterIcon size={20} />}
+              label={contactInfo.twitterUrl}
+              displayLabel="Twitter"
+              actionType={ContactActionType.NAVIGATE}
+            />
+          </StaggerItem>
         ) : null}
-      </div>
+      </StaggerContainer>
     </div>
   );
 };

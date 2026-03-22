@@ -13,9 +13,10 @@ type Response = Record<string, any>;
 
 const formatProfileDataResponse = (response: Response): iProfileData => {
   const formattedResponse: iProfileData = {
-    aboutMe: response.aboutMe,
-    fullName: response.fullName,
-    dateOfBirth: response.dateOfBirth,
+    aboutMe: response.aboutMe || response.aboutme,
+    fullName: response.fullName || response.fullname,
+    dateOfBirth: response.dateOfBirth || response.dateofbirth,
+    resumeUrl: response.resumeUrl || response.resumeurl || "",
   };
   return formattedResponse;
 };

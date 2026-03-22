@@ -1,31 +1,38 @@
 "use client";
 
 import { Download } from "lucide-react";
-import React from "react";
 
 interface ResumeButtonProps {
   hideText?: boolean;
+  resumeUrl: string;
 }
 
-const ResumeButton = ({ hideText }: ResumeButtonProps) => {
-  const resumeUrl =
-    "https://firebasestorage.googleapis.com/v0/b/portfolio-images-13699.firebasestorage.app/o/Bandi%20Mani%20Sai%20Prasoon_Resume.pdf?alt=media";
-
+const ResumeButton = ({ hideText, resumeUrl }: ResumeButtonProps) => {
   const downloadResume = () => {
-    window.open(resumeUrl, "_blank");
+    if (resumeUrl) {
+      window.open(resumeUrl, "_blank");
+    }
   };
 
-  return (
-    <div
-      className={`flex flex-row gap-2 items-center p-1 px-2 rounded-md w-fit cursor-pointer ${
-        hideText ? "" : "border"
-      }`}
-      onClick={downloadResume}
-    >
-      {!hideText ? <span className="font-bold text-sm">Resume</span> : null}
+  if (hideText) {
+    return (
+      <button
+        onClick={downloadResume}
+        className="p-2 rounded-lg hover:bg-accent transition-colors"
+      >
+        <Download size={18} />
+      </button>
+    );
+  }
 
-      <Download size={"18px"} className="cursor-pointer"/>
-    </div>
+  return (
+    <button
+      onClick={downloadResume}
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity w-fit"
+    >
+      <Download size={16} />
+      Download Resume
+    </button>
   );
 };
 

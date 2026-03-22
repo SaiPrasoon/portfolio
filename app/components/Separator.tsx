@@ -1,8 +1,5 @@
-
 const Separator = () => {
-  return (
-    <div className='w-full border-1 my-1'></div>
-  )
-}
+  return <div className="w-full border-t border-border/50 my-6" />;
+};
 
-export default Separator
+export default Separator;

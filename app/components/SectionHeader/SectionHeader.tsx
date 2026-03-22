@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface SectionHeaderProps {
@@ -13,15 +13,15 @@ const SectionHeader = ({
   hideLink,
 }: SectionHeaderProps) => {
   return (
-    <div className="flex flex-row gap-4 items-center">
-      <span className="font-bold">{title}</span>
+    <div className="flex flex-row items-center justify-between">
+      <h2 className="text-xl md:text-2xl font-bold tracking-tight">{title}</h2>
       {!hideLink ? (
         <Link
           href={viewMoreLink || ""}
-          className="text-indigo-500 flex flex-row gap-1 items-center justify-center text-sm cursor-pointer hover:font-bold  dark:text-teal-500"
+          className="text-primary flex flex-row gap-1.5 items-center text-sm font-medium hover:gap-2.5 transition-all duration-200"
         >
-          <span className="cursor-pointer">View More</span>
-          <ChevronRight size={16} />
+          <span>View More</span>
+          <ArrowRight size={14} />
         </Link>
       ) : null}
     </div>

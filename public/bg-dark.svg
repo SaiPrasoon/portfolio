@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .tri { fill: none; stroke: rgba(129,140,248,0.1); stroke-width: 0.5; }
+      .bin { fill: rgba(129,140,248,0.08); font-family: monospace; font-size: 8px; }
+    </style>
+  </defs>
+  <!-- Triangle mesh -->
+  <polygon class="tri" points="0,0 100,0 50,86.6"/>
+  <polygon class="tri" points="100,0 200,0 150,86.6"/>
+  <polygon class="tri" points="50,86.6 150,86.6 100,0"/>
+  <polygon class="tri" points="0,0 50,86.6 0,173.2"/>
+  <polygon class="tri" points="50,86.6 100,173.2 0,173.2"/>
+  <polygon class="tri" points="50,86.6 150,86.6 100,173.2"/>
+  <polygon class="tri" points="150,86.6 200,0 200,173.2"/>
+  <polygon class="tri" points="150,86.6 200,173.2 100,173.2"/>
+  <polygon class="tri" points="0,173.2 100,173.2 50,200"/>
+  <polygon class="tri" points="100,173.2 200,173.2 150,200"/>
+  <!-- Binary digits scattered -->
+  <text class="bin" x="12" y="28">1</text>
+  <text class="bin" x="78" y="15">0</text>
+  <text class="bin" x="155" y="35">1</text>
+  <text class="bin" x="42" y="62">0</text>
+  <text class="bin" x="118" y="50">1</text>
+  <text class="bin" x="175" y="72">0</text>
+  <text class="bin" x="8" y="105">1</text>
+  <text class="bin" x="70" y="98">0</text>
+  <text class="bin" x="135" y="110">1</text>
+  <text class="bin" x="185" y="130">0</text>
+  <text class="bin" x="25" y="140">0</text>
+  <text class="bin" x="95" y="148">1</text>
+  <text class="bin" x="160" y="155">0</text>
+  <text class="bin" x="55" y="180">1</text>
+  <text class="bin" x="110" y="190">0</text>
+  <text class="bin" x="15" y="195">0</text>
+  <text class="bin" x="170" y="192">1</text>
+</svg>

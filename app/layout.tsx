@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Oxygen } from "next/font/google";
-// import Footer from "./components/Footer";
+import { Inter, Oxygen } from "next/font/google";
 import { Toaster } from "sonner";
 import Navbar from "./components/Navbar";
-import { ThemeProvider } from "./components/ThemeProvider";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 const oxygen = Oxygen({
   subsets: ["latin"],
@@ -13,9 +16,23 @@ const oxygen = Oxygen({
 });
 
 export const metadata: Metadata = {
-  title: "Prasoon - Portfolio",
+  title: "Prasoon Bandi | Software Engineer",
   description:
-    "Explore the portfolio of Mani Sai Prasoon Bandi, a passionate software engineer with expertise in building scalable and user-friendly web applications using modern technologies like Angular, ReactJS, and AI-driven platforms.",
+    "Explore the portfolio of Mani Sai Prasoon Bandi, a passionate software engineer with 6+ years of experience building scalable web applications using Angular, React, TypeScript, and AI-driven platforms.",
+  openGraph: {
+    title: "Prasoon Bandi | Software Engineer",
+    description:
+      "Software engineer with 6+ years of experience building scalable web applications.",
+    url: "https://bmsprasoon.com",
+    siteName: "Prasoon Bandi Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Prasoon Bandi | Software Engineer",
+    description:
+      "Software engineer with 6+ years of experience building scalable web applications.",
+  },
 };
 
 export default function RootLayout({
@@ -24,27 +41,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark">
       <head>
         <link rel="icon" href="/initials.svg" type="image/svg+xml" />
       </head>
 
-      <body className={`${oxygen.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Toaster position="top-right" />
-          <div className="p-4 flex flex-col items-center justify-center gap-3">
-            <div className="main-container">
-              <Navbar />
-              {children}
-              {/* <Footer /> */}
-            </div>
+      <body
+        className={`${oxygen.variable} ${inter.variable} font-[family-name:var(--font-oxygen)] antialiased`}
+      >
+        <Toaster position="top-right" />
+        <div className="min-h-screen flex flex-col items-center">
+          <div className="main-container px-4 py-4">
+            <Navbar />
+            <main>{children}</main>
           </div>
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   );
