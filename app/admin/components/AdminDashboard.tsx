@@ -112,7 +112,7 @@ export default function AdminDashboard({
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     About Me
                   </span>
-                  <p className="text-sm text-muted-foreground">{profile.aboutMe}</p>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">{profile.aboutMe}</p>
                 </div>
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
