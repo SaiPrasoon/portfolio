@@ -96,6 +96,20 @@ export default function AdminDashboard({
                 </div>
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    Date of Birth
+                  </span>
+                  <p className="text-sm text-muted-foreground">
+                    {profile.dateOfBirth
+                      ? new Date(profile.dateOfBirth).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : "Not set"}
+                  </p>
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     About Me
                   </span>
                   <p className="text-sm text-muted-foreground">{profile.aboutMe}</p>

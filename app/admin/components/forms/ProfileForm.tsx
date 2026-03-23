@@ -29,12 +29,20 @@ export default function ProfileForm({
   onSuccess,
 }: ProfileFormProps) {
   const [fullName, setFullName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
   const [aboutMe, setAboutMe] = useState("");
   const [resumeUrl, setResumeUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const toDateStr = (d: Date | undefined) => {
+    if (!d) return "";
+    const date = new Date(d);
+    return date.toISOString().split("T")[0];
+  };
+
   useEffect(() => {
     setFullName(profile.fullName);
+    setDateOfBirth(toDateStr(profile.dateOfBirth));
     setAboutMe(profile.aboutMe);
     setResumeUrl(profile.resumeUrl);
   }, [profile, open]);
@@ -47,7 +55,7 @@ export default function ProfileForm({
       const res = await fetch("/api/admin/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName, aboutMe, resumeUrl }),
+        body: JSON.stringify({ fullName, dateOfBirth, aboutMe, resumeUrl }),
       });
 
       if (res.ok) {
@@ -73,6 +81,10 @@ export default function ProfileForm({
           <div className="flex flex-col gap-2">
             <Label>Full Name</Label>
             <Input value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label>Date of Birth</Label>
+            <Input type="date" value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} required />
           </div>
           <div className="flex flex-col gap-2">
             <Label>About Me</Label>
