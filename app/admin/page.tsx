@@ -8,6 +8,8 @@ import {
 } from "@/app/lib/data";
 import AdminDashboard from "./components/AdminDashboard";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const [profile, contact, experiences, skills, educationList, awards] =
     await Promise.all([

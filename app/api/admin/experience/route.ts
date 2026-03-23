@@ -1,4 +1,5 @@
 import { sql } from "@/app/lib/db";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -8,6 +9,9 @@ export async function POST(request: NextRequest) {
       "INSERT INTO experience (companyname, companylogo, iscurrent, startdate, enddate) VALUES ($1, $2, $3, $4, $5)",
       [companyName, companyLogo, isCurrent, startDate, endDate]
     );
+    revalidatePath("/admin");
+    revalidatePath("/");
+    revalidatePath("/experience");
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: String(error) }, { status: 500 });
@@ -21,6 +25,9 @@ export async function PUT(request: NextRequest) {
       "UPDATE experience SET companyname = $1, companylogo = $2, iscurrent = $3, startdate = $4, enddate = $5 WHERE id = $6",
       [companyName, companyLogo, isCurrent, startDate, endDate, id]
     );
+    revalidatePath("/admin");
+    revalidatePath("/");
+    revalidatePath("/experience");
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: String(error) }, { status: 500 });
@@ -33,6 +40,9 @@ export async function DELETE(request: NextRequest) {
     // Delete associated projects first
     await sql("DELETE FROM projects WHERE experienceid = $1", [id]);
     await sql("DELETE FROM experience WHERE id = $1", [id]);
+    revalidatePath("/admin");
+    revalidatePath("/");
+    revalidatePath("/experience");
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: String(error) }, { status: 500 });
