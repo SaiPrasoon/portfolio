@@ -1,5 +1,5 @@
-import { FadeInUp, StaggerContainer, StaggerItem } from "../components/MotionWrapper";
-import { fetchExperiences } from "../lib/data";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import { fetchExperiences } from "@/app/lib/data";
 import ExperienceCard from "./ExperienceCard";
 
 const ExperiencePage = async () => {

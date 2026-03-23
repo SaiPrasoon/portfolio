@@ -12,7 +12,7 @@ import {
 import { Award, Eye } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { iAward } from "../utils/interfaces";
+import { iAward } from "@/app/utils/interfaces";
 
 interface AwardCardProps {
   award: iAward;

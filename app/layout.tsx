@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oxygen } from "next/font/google";
 import { Toaster } from "sonner";
-import Navbar from "./components/Navbar";
 import "./globals.css";
 
 const inter = Inter({
@@ -52,8 +51,7 @@ export default function RootLayout({
         <Toaster position="top-right" />
         <div className="min-h-screen flex flex-col items-center">
           <div className="main-container px-4 py-4">
-            <Navbar />
-            <main>{children}</main>
+            {children}
           </div>
         </div>
       </body>

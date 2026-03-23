@@ -1,4 +1,3 @@
-import { neon } from "@neondatabase/serverless";
 import {
   formatAwardResponse,
   formatContactResponse,
@@ -7,8 +6,7 @@ import {
   formatProfileDataResponse,
   formatSkillResponse,
 } from "../services/dataFormatter";
-
-const sql = neon(`${process.env.DATABASE_URL}`);
+import { sql } from "./db";
 
 const fetchProfileData = async () => {
   "use server";

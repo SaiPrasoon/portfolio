@@ -1,7 +1,7 @@
-import SkillCard from "../components/SkillCard";
-import { FadeInUp, StaggerContainer, StaggerItem } from "../components/MotionWrapper";
-import { fetchSkills } from "../lib/data";
-import { iSkill } from "../utils/interfaces";
+import SkillCard from "@/app/components/SkillCard";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import { fetchSkills } from "@/app/lib/data";
+import { iSkill } from "@/app/utils/interfaces";
 
 const SkillsPage = async () => {
   const skillList = await fetchSkills();

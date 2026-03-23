@@ -1,5 +1,5 @@
-import { FadeInUp, StaggerContainer, StaggerItem } from "../components/MotionWrapper";
-import { fetchAwards } from "../lib/data";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import { fetchAwards } from "@/app/lib/data";
 import AwardCard from "./AwardCard";
 
 const Awards = async () => {

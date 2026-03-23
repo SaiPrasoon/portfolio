@@ -1,6 +1,6 @@
 "use client";
 
-import { ContactActionType } from "../utils/constants";
+import { ContactActionType } from "@/app/utils/constants";
 import { toast } from "sonner";
 import { Copy, ExternalLink } from "lucide-react";
 import { ReactNode } from "react";

@@ -1,5 +1,5 @@
-import { getExperienceDuration } from "../services/commonService";
-import { iExperience, iProject } from "../utils/interfaces";
+import { getExperienceDuration } from "@/app/services/commonService";
+import { iExperience, iProject } from "@/app/utils/interfaces";
 import { Briefcase, ExternalLink } from "lucide-react";
 
 interface ExperienceCardProps {

@@ -1,18 +1,18 @@
 import AwardCard from "./awards/AwardCard";
-import EducationCard from "./components/EducationCard";
-import Intro from "./components/Intro/Intro";
-import { FadeInUp, StaggerContainer, StaggerItem } from "./components/MotionWrapper";
-import RecentExperience from "./components/RecentExperience";
-import SectionHeader from "./components/SectionHeader/SectionHeader";
-import Separator from "./components/Separator";
-import SkillCard from "./components/SkillCard";
+import EducationCard from "@/app/components/EducationCard";
+import Intro from "@/app/components/Intro/Intro";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import RecentExperience from "@/app/components/RecentExperience";
+import SectionHeader from "@/app/components/SectionHeader/SectionHeader";
+import Separator from "@/app/components/Separator";
+import SkillCard from "@/app/components/SkillCard";
 import {
   fetchEducation,
   fetchRecentAwards,
   fetchRecentExperiences,
   fetchTechSkills,
-} from "./lib/data";
-import { iSkill } from "./utils/interfaces";
+} from "@/app/lib/data";
+import { iSkill } from "@/app/utils/interfaces";
 
 export default async function Home() {
   const recentExperiences = await fetchRecentExperiences();

@@ -1,8 +1,8 @@
 import { Github, LinkedinIcon, Mail, Phone, TwitterIcon } from "lucide-react";
-import { FadeInUp, StaggerContainer, StaggerItem } from "../components/MotionWrapper";
-import { fetchContactInfo } from "../lib/data";
+import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import { fetchContactInfo } from "@/app/lib/data";
 import ContactInfoSection from "./ContactInfoSection";
-import { ContactActionType } from "../utils/constants";
+import { ContactActionType } from "@/app/utils/constants";
 
 const Contact = async () => {
   const contactInfo = await fetchContactInfo();
