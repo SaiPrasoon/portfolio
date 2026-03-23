@@ -5,7 +5,7 @@ export async function PUT(request: NextRequest) {
   const { fullName, aboutMe, resumeUrl } = await request.json();
   try {
     await sql(
-      "UPDATE profiledata SET fullname = $1, aboutme = $2, resumeurl = $3",
+      "UPDATE profiledata SET fullName = $1, aboutMe = $2, resumeUrl = $3",
       [fullName, aboutMe, resumeUrl]
     );
     return NextResponse.json({ success: true });
