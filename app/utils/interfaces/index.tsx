@@ -13,6 +13,7 @@ export interface iProfileData {
 export interface iExperience {
     id: number;
   companyName: string;
+  role: string;
   companyLogo: string;
   isCurrent: boolean;
   startDate: Date;

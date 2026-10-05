@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 interface SectionHeaderProps {
@@ -7,21 +6,21 @@ interface SectionHeaderProps {
   hideLink?: boolean;
 }
 
+/** Editorial chapter title — Blanco/serif, never a UI label. */
 const SectionHeader = ({
   title,
   viewMoreLink,
   hideLink,
 }: SectionHeaderProps) => {
   return (
-    <div className="flex flex-row items-center justify-between">
-      <h2 className="text-xl md:text-2xl font-bold tracking-tight">{title}</h2>
+    <div className="flex flex-row items-baseline justify-between gap-4">
+      <h2 className="font-blanco text-heading text-charcoal">{title}</h2>
       {!hideLink ? (
         <Link
           href={viewMoreLink || ""}
-          className="text-primary flex flex-row gap-1.5 items-center text-sm font-medium hover:gap-2.5 transition-all duration-200"
+          className="font-degular text-caption text-stone hover:text-ink-black transition-colors shrink-0"
         >
-          <span>View More</span>
-          <ArrowRight size={14} />
+          View all <span className="text-[0.75em] align-super">↗</span>
         </Link>
       ) : null}
     </div>

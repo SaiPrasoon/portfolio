@@ -26,4 +26,16 @@ const getExperienceDuration = (
   return duration;
 };
 
-export { shortDateFormatter, getExperienceDuration };
+/** Compact year range for the narrow left rail of a resumé entry: "2024 — 2025". */
+const getYearRange = (
+  isCurrent: boolean,
+  startDate: Date,
+  endDate?: Date
+) => {
+  const start = startDate.getFullYear();
+  if (isCurrent) return `${start} — Present`;
+  const end = endDate ? endDate.getFullYear() : start;
+  return start === end ? `${start}` : `${start} — ${end}`;
+};
+
+export { shortDateFormatter, getExperienceDuration, getYearRange };

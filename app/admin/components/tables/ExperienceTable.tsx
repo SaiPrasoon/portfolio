@@ -104,6 +104,7 @@ export default function ExperienceTable({ experiences }: ExperienceTableProps) {
             <TableRow>
               <TableHead className="w-8"></TableHead>
               <TableHead>Company</TableHead>
+              <TableHead>Job Title</TableHead>
               <TableHead>Duration</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="w-20">Actions</TableHead>
@@ -128,6 +129,7 @@ export default function ExperienceTable({ experiences }: ExperienceTableProps) {
                     </Button>
                   </TableCell>
                   <TableCell className="font-medium">{exp.companyName}</TableCell>
+                  <TableCell className="text-sm">{exp.role}</TableCell>
                   <TableCell className="text-sm text-muted-foreground">
                     {getExperienceDuration(exp.isCurrent, exp.startDate, exp.endDate)}
                   </TableCell>
@@ -162,7 +164,7 @@ export default function ExperienceTable({ experiences }: ExperienceTableProps) {
 
                 {expandedIds.has(exp.id) && (
                   <TableRow key={`projects-${exp.id}`}>
-                    <TableCell colSpan={5} className="bg-accent/30 p-4">
+                    <TableCell colSpan={6} className="bg-accent/30 p-4">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                           Projects ({exp.projects.length})

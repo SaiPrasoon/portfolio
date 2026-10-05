@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ArrowLeft, LogOut, Menu } from "lucide-react";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -25,6 +26,9 @@ export default function AdminHeader() {
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/50 -mx-4 px-4 py-3 mb-4">
       <div className="flex items-center justify-between">
         <h2 className="text-base font-bold lg:text-xl tracking-tight">Admin Panel</h2>
+
+        <div className="flex items-center gap-4">
+        <ThemeToggle />
 
         <Sheet>
           <SheetTrigger asChild>
@@ -60,6 +64,7 @@ export default function AdminHeader() {
             </nav>
           </SheetContent>
         </Sheet>
+        </div>
       </div>
     </nav>
   );

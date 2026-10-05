@@ -1,8 +1,11 @@
-import AwardCard from "./awards/AwardCard";
 import EducationCard from "@/app/components/EducationCard";
 import Intro from "@/app/components/Intro/Intro";
-import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
-import RecentExperience from "@/app/components/RecentExperience";
+import {
+  FadeInUp,
+  StaggerContainer,
+  StaggerItem,
+} from "@/app/components/MotionWrapper";
+import ResumeEntry from "@/app/components/ResumeEntry";
 import SectionHeader from "@/app/components/SectionHeader/SectionHeader";
 import Separator from "@/app/components/Separator";
 import SkillCard from "@/app/components/SkillCard";
@@ -13,12 +16,16 @@ import {
   fetchTechSkills,
 } from "@/app/lib/data";
 import { iSkill } from "@/app/utils/interfaces";
+import AwardCard from "./awards/AwardCard";
 
 export default async function Home() {
-  const recentExperiences = await fetchRecentExperiences();
-  const techSkills = await fetchTechSkills();
-  const educationList = await fetchEducation();
-  const recentAwards = await fetchRecentAwards();
+  const [recentExperiences, techSkills, educationList, recentAwards] =
+    await Promise.all([
+      fetchRecentExperiences(),
+      fetchTechSkills(),
+      fetchEducation(),
+      fetchRecentAwards(),
+    ]);
 
   return (
     <div className="flex flex-col">
@@ -27,16 +34,12 @@ export default async function Home() {
       <Separator />
 
       <FadeInUp>
-        <SectionHeader title="Recent Experience" viewMoreLink="/experience" />
-        <p className="text-sm text-muted-foreground mt-1 mb-4">
-          My recent professional experiences and projects.
-        </p>
+        <SectionHeader title="Experience" viewMoreLink="/experience" />
       </FadeInUp>
-
-      <StaggerContainer className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+      <StaggerContainer className="mt-2 divide-y divide-ash">
         {recentExperiences.map((experience) => (
-          <StaggerItem key={experience.id} className="h-full">
-            <RecentExperience experience={experience} />
+          <StaggerItem key={experience.id}>
+            <ResumeEntry experience={experience} compact />
           </StaggerItem>
         ))}
       </StaggerContainer>
@@ -44,13 +47,12 @@ export default async function Home() {
       <Separator />
 
       <FadeInUp>
-        <SectionHeader title="Accomplishments" viewMoreLink="/awards" />
+        <SectionHeader title="Recognition" viewMoreLink="/awards" />
       </FadeInUp>
-
-      <StaggerContainer className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 auto-rows-fr">
+      <StaggerContainer className="mt-8 flex flex-col gap-10">
         {recentAwards.map((award) => (
-          <StaggerItem key={award.id} className="h-full">
-            <AwardCard award={award} hidePreview={true} />
+          <StaggerItem key={award.id}>
+            <AwardCard award={award} hidePreview />
           </StaggerItem>
         ))}
       </StaggerContainer>
@@ -58,33 +60,24 @@ export default async function Home() {
       <Separator />
 
       <FadeInUp>
-        <SectionHeader title="Education" hideLink={true} />
+        <SectionHeader title="Education" hideLink />
       </FadeInUp>
-
-      <StaggerContainer className="flex flex-row gap-4 mt-4">
+      <div className="mt-8 flex flex-col gap-10">
         {educationList.map((education) => (
-          <StaggerItem key={education.id} className="w-full">
-            <EducationCard education={education} />
-          </StaggerItem>
+          <EducationCard key={education.id} education={education} />
         ))}
-      </StaggerContainer>
+      </div>
 
       <Separator />
 
       <FadeInUp>
         <SectionHeader title="Skills" viewMoreLink="/skills" />
-        <p className="text-sm text-muted-foreground mt-1 mb-4">
-          Technical skills developed throughout my professional experience.
-        </p>
       </FadeInUp>
-
-      <StaggerContainer className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-3">
+      <div className="mt-8 flex flex-wrap gap-2">
         {techSkills.map((skill: iSkill) => (
-          <StaggerItem key={skill.id}>
-            <SkillCard skill={skill} />
-          </StaggerItem>
+          <SkillCard key={skill.id} skill={skill} />
         ))}
-      </StaggerContainer>
+      </div>
     </div>
   );
 }

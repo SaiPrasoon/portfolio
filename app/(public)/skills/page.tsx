@@ -1,7 +1,14 @@
+import { FadeInUp } from "@/app/components/MotionWrapper";
 import SkillCard from "@/app/components/SkillCard";
-import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
 import { fetchSkills } from "@/app/lib/data";
 import { iSkill } from "@/app/utils/interfaces";
+
+const typeLabels: Record<string, string> = {
+  TECH: "Technical",
+  DESIGN: "Design",
+  SOFT: "Soft Skills",
+  OTHER: "Tooling & Process",
+};
 
 const SkillsPage = async () => {
   const skillList = await fetchSkills();
@@ -9,46 +16,37 @@ const SkillsPage = async () => {
   const grouped = skillList.reduce(
     (acc: Record<string, iSkill[]>, skill: iSkill) => {
       const type = skill.type || "OTHER";
-      if (!acc[type]) acc[type] = [];
-      acc[type].push(skill);
+      (acc[type] ||= []).push(skill);
       return acc;
     },
     {} as Record<string, iSkill[]>
   );
 
-  const typeLabels: Record<string, string> = {
-    TECH: "Technical Skills",
-    SOFT: "Soft Skills",
-    OTHER: "Other Skills",
-  };
-
   return (
-    <div className="flex flex-col gap-6 py-2">
+    <div className="flex flex-col">
       <FadeInUp>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Skills</h1>
-        <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-2xl">
-          A collection of skills I&apos;ve built across years of professional experience —
-          from modern frameworks to leadership and problem-solving.
+        <h1 className="font-blanco text-heading-lg text-charcoal">Skills</h1>
+        <p className="font-degular text-body-lg text-graphite mt-6">
+          The tools and practices I reach for, built up across years of shipping
+          production software.
         </p>
       </FadeInUp>
 
-      {Object.entries(grouped).map(([type, skills]) => (
-        <div key={type}>
-          <FadeInUp>
-            <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              {typeLabels[type] || type}
-            </h2>
-          </FadeInUp>
-          <StaggerContainer className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-3">
-            {skills.map((skill: iSkill) => (
-              <StaggerItem key={skill.id}>
-                <SkillCard skill={skill} />
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      ))}
+      <div className="mt-12 flex flex-col">
+        {Object.entries(grouped).map(([type, skills], index) => (
+          <div
+            key={type}
+            className={index > 0 ? "hairline pt-10 mt-10" : undefined}
+          >
+            <h2 className="meta-label">{typeLabels[type] || type}</h2>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {skills.map((skill: iSkill) => (
+                <SkillCard key={skill.id} skill={skill} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -34,6 +34,7 @@ export default function ExperienceForm({
   onSuccess,
 }: ExperienceFormProps) {
   const [companyName, setCompanyName] = useState("");
+  const [role, setRole] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [isCurrent, setIsCurrent] = useState(false);
   const [startDate, setStartDate] = useState("");
@@ -43,12 +44,14 @@ export default function ExperienceForm({
   useEffect(() => {
     if (experience) {
       setCompanyName(experience.companyName);
+      setRole(experience.role);
       setCompanyLogo(experience.companyLogo);
       setIsCurrent(experience.isCurrent);
       setStartDate(toDateStr(experience.startDate));
       setEndDate(toDateStr(experience.endDate));
     } else {
       setCompanyName("");
+      setRole("");
       setCompanyLogo("");
       setIsCurrent(false);
       setStartDate("");
@@ -64,6 +67,7 @@ export default function ExperienceForm({
     const body = {
       ...(experience ? { id: experience.id } : {}),
       companyName,
+      role,
       companyLogo,
       isCurrent,
       startDate,
@@ -100,6 +104,15 @@ export default function ExperienceForm({
           <div className="flex flex-col gap-2">
             <Label>Company Name</Label>
             <Input value={companyName} onChange={(e) => setCompanyName(e.target.value)} required />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label>Job Title</Label>
+            <Input
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder="e.g. Senior Software Engineer"
+              required
+            />
           </div>
           <FileUpload
             label="Company Logo"

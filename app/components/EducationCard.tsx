@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { GraduationCap } from "lucide-react";
+import { getYearRange } from "../services/commonService";
 import { iEducation } from "../utils/interfaces";
 
 interface EducationCardProps {
@@ -13,47 +6,28 @@ interface EducationCardProps {
 }
 
 const EducationCard = ({ education }: EducationCardProps) => {
-  const getEducationDuration = () => {
-    const startDate: string = new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      year: "numeric",
-    })
-      .format(education.startDate)
-      .toString();
-
-    const endDate = new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      year: "numeric",
-    })
-      .format(education.endDate)
-      .toString();
-
-    return `${startDate} - ${endDate}`;
-  };
-
   return (
-    <Card className="w-full group hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-      <CardHeader className="pb-3">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
-            <GraduationCap size={20} />
-          </div>
-          <div>
-            <CardTitle className="text-base">{education.degree}</CardTitle>
-            <CardDescription className="text-xs mt-0.5">
-              {getEducationDuration()}
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          Pursued <strong className="text-foreground">{education.degree}</strong> from{" "}
-          <strong className="text-foreground">{education.institution}</strong> in{" "}
-          <strong className="text-foreground">Computer Science and Engineering</strong>.
+    <article className="flex flex-col gap-2 sm:flex-row sm:gap-8">
+      <div className="sm:w-[110px] sm:shrink-0 sm:pt-1">
+        <span className="font-degular text-caption text-stone">
+          {getYearRange(false, education.startDate, education.endDate)}
+        </span>
+      </div>
+
+      <div className="flex-1">
+        <h3 className="font-blanco text-heading-sm text-charcoal">
+          {education.degree}
+        </h3>
+        <p className="font-degular text-caption text-stone mt-1">
+          {education.institution}
         </p>
-      </CardContent>
-    </Card>
+        {education.grade && (
+          <p className="font-degular text-body text-graphite mt-4">
+            Graduated with an {education.grade} CGPA.
+          </p>
+        )}
+      </div>
+    </article>
   );
 };
 

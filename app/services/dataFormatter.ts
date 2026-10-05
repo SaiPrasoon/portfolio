@@ -36,6 +36,7 @@ const formatExperienceResponse = (response: Response): iExperience => {
   const formattedResponse: iExperience = {
     id: response.id,
     companyName: response.companyname,
+    role: response.role ?? "",
     companyLogo: response.companylogo,
     isCurrent: response.iscurrent,
     startDate: new Date(response.startdate),

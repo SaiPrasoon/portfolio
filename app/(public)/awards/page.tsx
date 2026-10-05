@@ -1,4 +1,8 @@
-import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import {
+  FadeInUp,
+  StaggerContainer,
+  StaggerItem,
+} from "@/app/components/MotionWrapper";
 import { fetchAwards } from "@/app/lib/data";
 import AwardCard from "./AwardCard";
 
@@ -6,20 +10,20 @@ const Awards = async () => {
   const awardsList = await fetchAwards();
 
   return (
-    <div className="flex flex-col gap-4 py-2">
+    <div className="flex flex-col">
       <FadeInUp>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-          Awards & Accomplishments
+        <h1 className="font-blanco text-heading-lg text-charcoal">
+          Recognition
         </h1>
-        <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-2xl">
-          Recognition received throughout my career — reflecting dedication,
-          teamwork, and the impact of my work.
+        <p className="font-degular text-body-lg text-graphite mt-6">
+          Awards received along the way — for delivery velocity, team
+          leadership, and measurable business impact.
         </p>
       </FadeInUp>
 
-      <StaggerContainer className="grid xs:grid-cols-1 md:grid-cols-2 gap-4 mt-2 auto-rows-fr">
+      <StaggerContainer className="mt-12 divide-y divide-ash">
         {awardsList.map((award) => (
-          <StaggerItem key={award.id} className="h-full">
+          <StaggerItem key={award.id} className="block py-8 first:pt-0">
             <AwardCard award={award} />
           </StaggerItem>
         ))}

@@ -2,7 +2,6 @@
 
 import { ContactActionType } from "@/app/utils/constants";
 import { toast } from "sonner";
-import { Copy, ExternalLink } from "lucide-react";
 import { ReactNode } from "react";
 
 interface ContactInfoSectionProps {
@@ -32,27 +31,18 @@ const ContactInfoSection = ({
   };
 
   return (
-    <div
-      className="group flex items-center gap-4 p-4 rounded-xl border bg-card hover:shadow-lg hover:border-primary/20 cursor-pointer transition-all duration-300"
+    <button
       onClick={handleClick}
+      className="group flex w-full items-baseline gap-2 sm:gap-8 py-5 text-left"
     >
-      <div className="p-2.5 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-        {icon}
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          {displayLabel}
-        </div>
-        <div className="text-sm font-medium truncate mt-0.5">{label}</div>
-      </div>
-      <div className="text-muted-foreground group-hover:text-primary transition-colors">
-        {actionType === ContactActionType.COPY ? (
-          <Copy size={16} />
-        ) : (
-          <ExternalLink size={16} />
-        )}
-      </div>
-    </div>
+      <span className="meta-label sm:w-[110px] sm:shrink-0">
+        {displayLabel}
+      </span>
+      <span className="flex flex-1 items-center gap-2 font-degular text-body-lg text-graphite group-hover:text-ink-black transition-colors min-w-0">
+        <span className="text-stone shrink-0">{icon}</span>
+        <span className="truncate">{label}</span>
+      </span>
+    </button>
   );
 };
 

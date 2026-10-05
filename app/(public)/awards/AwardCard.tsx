@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { iAward } from "@/app/utils/interfaces";
 import {
   Dialog,
   DialogContent,
@@ -9,10 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Award, Eye } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { iAward } from "@/app/utils/interfaces";
 
 interface AwardCardProps {
   award: iAward;
@@ -23,47 +20,46 @@ const AwardCard = ({ award, hidePreview }: AwardCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Card className="w-full h-full flex flex-col group hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-      <CardHeader className="pb-3">
-        <div className="flex items-center gap-2">
-          <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400">
-            <Award size={16} />
-          </div>
-          <CardTitle className="text-base">{award.name}</CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent className="flex flex-row gap-2 items-center justify-between pt-0 flex-1">
-        <p className="text-sm text-muted-foreground leading-relaxed">
+    <article className="flex flex-col gap-2 sm:flex-row sm:gap-8">
+      <div className="sm:w-[110px] sm:shrink-0 sm:pt-1">
+        <span className="font-degular text-caption text-stone">
+          {award.year}
+        </span>
+      </div>
+
+      <div className="flex-1">
+        <h3 className="font-blanco text-heading-sm text-charcoal">
+          {award.name}
+        </h3>
+        <p className="font-degular text-body text-graphite mt-3">
           {award.description}
         </p>
 
-        {!hidePreview ? (
+        {!hidePreview && award.docUrl ? (
           <Dialog>
             <DialogTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-primary shrink-0 gap-1.5"
-              >
-                <Eye size={14} />
-                View
-              </Button>
+              <button className="font-degular text-caption text-ink-black hover:text-stone transition-colors mt-3">
+                View certificate{" "}
+                <span className="text-[0.75em] align-super">↗</span>
+              </button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[560px] bg-vellum border-ash rounded-sm">
               <DialogHeader>
-                <DialogTitle>{award.name}</DialogTitle>
+                <DialogTitle className="font-blanco text-heading-sm text-charcoal text-left">
+                  {award.name}
+                </DialogTitle>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
+              <div className="py-2">
                 {isLoading && (
-                  <div className="flex w-inherit h-[20vh] bg-muted animate-pulse rounded-lg" />
+                  <div className="h-[40vh] w-full bg-ash/40 animate-pulse rounded-sm" />
                 )}
                 <Image
                   src={award.docUrl}
                   width={650}
                   height={500}
                   alt={award.name}
-                  className={`w-[80vw] h-[40vh] object-contain transition-opacity duration-300 rounded-lg ${
-                    isLoading ? "opacity-0" : "opacity-100"
+                  className={`w-full h-[40vh] object-contain rounded-sm transition-opacity duration-300 ${
+                    isLoading ? "opacity-0 absolute" : "opacity-100"
                   }`}
                   onLoad={() => setIsLoading(false)}
                 />
@@ -71,8 +67,8 @@ const AwardCard = ({ award, hidePreview }: AwardCardProps) => {
             </DialogContent>
           </Dialog>
         ) : null}
-      </CardContent>
-    </Card>
+      </div>
+    </article>
   );
 };
 

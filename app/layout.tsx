@@ -1,36 +1,39 @@
 import type { Metadata } from "next";
-import { Inter, Oxygen } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const inter = Inter({
+// Degular substitute — UI, body, navigation, metadata.
+const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-sans-stack",
 });
 
-const oxygen = Oxygen({
+// Blanco substitute — headlines, section titles, role titles.
+const serif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
-  variable: "--font-oxygen",
+  weight: ["400"],
+  variable: "--font-serif-stack",
 });
+
+const DESCRIPTION =
+  "Senior Frontend Engineer with 7+ years building high-performance web applications across fintech, legaltech, and AI-driven SaaS, using React, Angular, Next.js, and TypeScript.";
 
 export const metadata: Metadata = {
-  title: "Prasoon Bandi | Software Engineer",
-  description:
-    "Explore the portfolio of Mani Sai Prasoon Bandi, a passionate software engineer with 6+ years of experience building scalable web applications using Angular, React, TypeScript, and AI-driven platforms.",
+  metadataBase: new URL("https://bmsprasoon.com"),
+  title: "Prasoon Bandi | Senior Frontend Engineer",
+  description: `Explore the portfolio of Mani Sai Prasoon Bandi. ${DESCRIPTION}`,
   openGraph: {
-    title: "Prasoon Bandi | Software Engineer",
-    description:
-      "Software engineer with 6+ years of experience building scalable web applications.",
+    title: "Prasoon Bandi | Senior Frontend Engineer",
+    description: DESCRIPTION,
     url: "https://bmsprasoon.com",
     siteName: "Prasoon Bandi Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prasoon Bandi | Software Engineer",
-    description:
-      "Software engineer with 6+ years of experience building scalable web applications.",
+    title: "Prasoon Bandi | Senior Frontend Engineer",
+    description: DESCRIPTION,
   },
 };
 
@@ -40,20 +43,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/initials.svg" type="image/svg+xml" />
+        {/* Applies the stored theme before first paint so there is no flash.
+            Dark is the default, so this only ever opts in to light. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem('theme')==='light')document.documentElement.classList.add('light')}catch(e){}`,
+          }}
+        />
       </head>
-
-      <body
-        className={`${oxygen.variable} ${inter.variable} font-[family-name:var(--font-oxygen)] antialiased`}
-      >
+      <body className={`${sans.variable} ${serif.variable}`}>
         <Toaster position="top-right" />
-        <div className="min-h-screen flex flex-col items-center">
-          <div className="main-container px-4 py-4">
-            {children}
-          </div>
-        </div>
+        {children}
       </body>
     </html>
   );

@@ -7,6 +7,10 @@ interface ResumeButtonProps {
   resumeUrl: string;
 }
 
+/**
+ * The single filled action on the page. Pressed ink on vellum is the only
+ * moment of visual weight in the system — keep it to one per viewport.
+ */
 const ResumeButton = ({ hideText, resumeUrl }: ResumeButtonProps) => {
   const downloadResume = () => {
     if (resumeUrl) {
@@ -18,7 +22,8 @@ const ResumeButton = ({ hideText, resumeUrl }: ResumeButtonProps) => {
     return (
       <button
         onClick={downloadResume}
-        className="p-2 rounded-lg hover:bg-accent transition-colors"
+        aria-label="Download resume"
+        className="p-2 rounded-sm text-ink-black hover:text-stone transition-colors"
       >
         <Download size={18} />
       </button>
@@ -28,10 +33,10 @@ const ResumeButton = ({ hideText, resumeUrl }: ResumeButtonProps) => {
   return (
     <button
       onClick={downloadResume}
-      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity w-fit"
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-sm bg-pressed-ink text-vellum font-degular text-caption font-medium hover:bg-midnight transition-colors w-fit"
     >
-      <Download size={16} />
-      Download Resume
+      <Download size={14} />
+      Download Résumé
     </button>
   );
 };

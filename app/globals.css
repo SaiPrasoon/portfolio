@@ -1,113 +1,213 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@theme {
+  --text-caption: 14px;
+  --text-caption--line-height: 1.5;
+  --text-body: 16px;
+  --text-body--line-height: 1.5;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.5;
+  --text-subheading: 20px;
+  --text-subheading--line-height: 1.4;
+  --text-heading-sm: 22px;
+  --text-heading-sm--line-height: 1.4;
+  --text-heading: 28px;
+  --text-heading--line-height: 1.4;
+  --text-heading-lg: 32px;
+  --text-heading-lg--line-height: 1.25;
+  --text-display: 40px;
+  --text-display--line-height: 1.25;
 
+  --radius-sm: 3px;
+  --radius-lg: 8px;
+}
+
+/* shadcn primitives (dialog, sheet, button, input, table) still read these.
+   Remapped from the old dark theme onto the vellum palette so the admin
+   panel inherits the same monochrome field instead of fighting it. */
 @theme inline {
+  /* Degular -> Inter, Blanco -> Source Serif 4 (licensed substitutes per spec).
+     These must live in `inline` — next/font defines the stack variables on
+     <body>, so a non-inline @theme would resolve them at :root and get nothing. */
+  --font-degular: var(--font-sans-stack), ui-sans-serif, system-ui, sans-serif;
+  --font-blanco: var(--font-serif-stack), ui-serif, Georgia, serif;
+
+  /* Palette — monochrome by design. Do not add chromatic accents.
+     These names are ROLES, not literal colors (the spec defines them that way:
+     "Ink Black — primary text, the default reading color"). Each maps to a
+     variable that flips between themes, so `text-ink-black` means "the reading
+     color" and `bg-vellum` means "the canvas" in both light and dark. */
+  --color-vellum: var(--surface);
+  --color-ink-black: var(--text-primary);
+  --color-graphite: var(--text-secondary);
+  --color-charcoal: var(--text-heading);
+  --color-stone: var(--text-tertiary);
+  --color-pebble: var(--text-muted);
+  --color-ash: var(--rule);
+  --color-slate: var(--text-tertiary);
+  --color-pressed-ink: var(--action-surface);
+  --color-midnight: var(--action-surface-hover);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-oxygen: var(--font-oxygen);
-  --font-display: var(--font-display);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-body {
-  font-family: var(--font-oxygen), sans-serif;
-}
-
+/* Dark is the default, and lives on :root rather than a .dark class so that a
+   load with no JS (or before the theme script runs) still lands dark. The
+   .light class is the opt-in override. */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.13 0.015 265);
-  --foreground: oklch(0.95 0.005 265);
-  --card: oklch(0.18 0.018 265);
-  --card-foreground: oklch(0.95 0.005 265);
-  --popover: oklch(0.18 0.018 265);
-  --popover-foreground: oklch(0.95 0.005 265);
-  --primary: oklch(0.7 0.18 265);
-  --primary-foreground: oklch(0.13 0.015 265);
-  --secondary: oklch(0.22 0.018 265);
-  --secondary-foreground: oklch(0.95 0.005 265);
-  --muted: oklch(0.22 0.018 265);
-  --muted-foreground: oklch(0.65 0.03 265);
-  --accent: oklch(0.25 0.025 265);
-  --accent-foreground: oklch(0.95 0.005 265);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.7 0.18 265);
-  --chart-1: oklch(0.7 0.18 265);
-  --chart-2: oklch(0.65 0.17 310);
-  --chart-3: oklch(0.75 0.15 340);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.15 0.015 265);
-  --sidebar-foreground: oklch(0.95 0.005 265);
-  --sidebar-primary: oklch(0.7 0.18 265);
-  --sidebar-primary-foreground: oklch(0.95 0.005 265);
-  --sidebar-accent: oklch(0.22 0.018 265);
-  --sidebar-accent-foreground: oklch(0.95 0.005 265);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.7 0.18 265);
+  --radius: 3px;
+  color-scheme: dark;
+
+  /* Night counterpart to the vellum field: warm near-black, still monochrome,
+     still a single moment of weight (the action inverts to a light fill). */
+  --surface: #1b1a18;
+  --text-primary: #e6e4df;
+  --text-heading: #f0eee9;
+  --text-secondary: #c2bfb8;
+  --text-tertiary: #8f8c85;
+  --text-muted: #6f6d67;
+  --rule: #35332f;
+  --action-surface: #e6e4df;
+  --action-surface-hover: #ffffff;
+  --action-text: #1b1a18;
+
+  --background: var(--surface);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--action-surface);
+  --primary-foreground: var(--action-text);
+  --secondary: #26241f;
+  --secondary-foreground: var(--text-primary);
+  --muted: #26241f;
+  --muted-foreground: var(--text-tertiary);
+  --accent: #26241f;
+  --accent-foreground: var(--text-primary);
+  --destructive: #d98a8a;
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--text-tertiary);
+}
+
+.light {
+  color-scheme: light;
+
+  --surface: #e5e7eb;
+  --text-primary: #111827;
+  --text-heading: #2a2a28;
+  --text-secondary: #374151;
+  /* Spec's Stone is #717272, which lands at 3.9:1 on vellum — under WCAG AA
+     for the 14px meta text that uses it. Darkened just enough to clear 4.5:1. */
+  --text-tertiary: #646568;
+  --text-muted: #909191;
+  /* Spec lists #e5e7eb for hairlines, which is the canvas itself and so
+     invisible. Ash is the palette's "subtle structural separator". */
+  --rule: #c4c6c8;
+  --action-surface: #222222;
+  --action-surface-hover: #1a202c;
+  --action-text: #e5e7eb;
+
+  --secondary: #d8dade;
+  --muted: #d8dade;
+  --accent: #d8dade;
+  --destructive: #8b2f2f;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-vellum text-ink-black;
+    /* next/font sets --font-sans-stack on <body>; reference it directly since
+       --font-degular is an inline theme token and not emitted at :root. */
+    font-family: var(--font-sans-stack), ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-body-lg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
-}
-
-body {
-  background-image: url('/bg-dark.svg');
-  background-repeat: repeat;
-  background-attachment: fixed;
-  background-size: 200px 200px;
 }
 
 button {
   cursor: pointer;
 }
 
-.main-container {
+/* Editorial reading column — every public page body sits in this width. */
+.reading-column {
   width: 100%;
-  max-width: 860px;
+  max-width: 720px;
 }
 
-.separator {
-  width: 100%;
-  border: 1px solid var(--border);
+/* Uppercase meta labels: the one place the 0.1em tracking applies. */
+.meta-label {
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.hairline {
+  border-top: 1px solid var(--color-ash);
+}
+
+/* Entrance motion is CSS, not JS: it always runs, needs no IntersectionObserver,
+   and keeps the page readable if scripting never arrives. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise,
+.stagger > * {
+  animation: rise 0.5s ease-out both;
+}
+
+.stagger > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+.stagger > *:nth-child(3) {
+  animation-delay: 120ms;
+}
+.stagger > *:nth-child(4) {
+  animation-delay: 180ms;
+}
+.stagger > *:nth-child(5) {
+  animation-delay: 240ms;
+}
+.stagger > *:nth-child(n + 6) {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .stagger > * {
+    animation: none;
+  }
 }

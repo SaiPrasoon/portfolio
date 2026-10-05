@@ -1,23 +1,27 @@
-import { FadeInUp, StaggerContainer, StaggerItem } from "@/app/components/MotionWrapper";
+import {
+  FadeInUp,
+  StaggerContainer,
+  StaggerItem,
+} from "@/app/components/MotionWrapper";
+import ResumeEntry from "@/app/components/ResumeEntry";
 import { fetchExperiences } from "@/app/lib/data";
-import ExperienceCard from "./ExperienceCard";
 
 const ExperiencePage = async () => {
   const experienceList = await fetchExperiences();
 
   return (
-    <div className="flex flex-col gap-4 py-2">
+    <div className="flex flex-col">
       <FadeInUp>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Experience</h1>
-        <p className="text-sm text-muted-foreground mt-2 leading-relaxed max-w-2xl">
-          {`Throughout my career, I've worked with incredible teams and contributed to meaningful projects across different industries — from building scalable web applications to integrating AI-driven solutions.`}
+        <h1 className="font-blanco text-heading-lg text-charcoal">Experience</h1>
+        <p className="font-degular text-body-lg text-graphite mt-6">
+          {`Seven years across fintech, legaltech, and AI-driven SaaS — from case-management tooling for law firms to real-time interfaces over live ML models.`}
         </p>
       </FadeInUp>
 
-      <StaggerContainer className="flex flex-col mt-4">
+      <StaggerContainer className="mt-12 divide-y divide-ash">
         {experienceList.map((experience) => (
           <StaggerItem key={experience.id}>
-            <ExperienceCard experience={experience} />
+            <ResumeEntry experience={experience} />
           </StaggerItem>
         ))}
       </StaggerContainer>

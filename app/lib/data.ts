@@ -30,6 +30,7 @@ const fetchRecentExperiences = async () => {
   const rows = await sql(`SELECT 
     e.id,
     e.companyname,
+    e.role,
     e.companylogo,
     e.iscurrent,
     e.startdate,
@@ -104,6 +105,7 @@ const fetchExperiences = async () => {
   const rows = await sql(`SELECT 
       e.id,
       e.companyname,
+      e.role,
       e.companylogo,
       e.iscurrent,
       e.startdate,

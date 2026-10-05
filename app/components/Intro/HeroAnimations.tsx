@@ -1,45 +1,42 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 interface HeroAnimationsProps {
   aboutMe: string;
+  actions: ReactNode;
 }
 
-const HeroAnimations = ({ aboutMe }: HeroAnimationsProps) => {
+const HeroAnimations = ({ aboutMe, actions }: HeroAnimationsProps) => {
+  // Split the bio into paragraphs so the reading column gets real rhythm
+  // instead of one dense block.
+  const paragraphs = aboutMe
+    .split(/(?<=\.)\s+(?=[A-Z])/)
+    .reduce<string[]>((acc, sentence, i) => {
+      const bucket = Math.floor(i / 2);
+      acc[bucket] = acc[bucket] ? `${acc[bucket]} ${sentence}` : sentence;
+      return acc;
+    }, []);
+
   return (
-    <>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <span className="text-sm font-medium tracking-widest uppercase text-indigo-400">
-          Welcome to my portfolio
-        </span>
-      </motion.div>
+    <div className="stagger">
+      <p className="meta-label">Senior Frontend Engineer</p>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-        className="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight"
-      >
-        Hi, I&apos;m{" "}
-        <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-          Prasoon
-        </span>
-      </motion.h1>
+      <h1 className="font-blanco text-heading-lg md:text-display text-charcoal mt-6">
+        Mani Sai Prasoon Bandi
+      </h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-        className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
-      >
-        {aboutMe}
-      </motion.p>
-    </>
+      <div className="mt-8">
+        {paragraphs.map((paragraph, i) => (
+          <p
+            key={i}
+            className="font-degular text-body-lg text-graphite mb-[27px] last:mb-0"
+          >
+            {paragraph}
+          </p>
+        ))}
+      </div>
+
+      <div className="mt-10">{actions}</div>
+    </div>
   );
 };
 
